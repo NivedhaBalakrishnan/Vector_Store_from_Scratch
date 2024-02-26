@@ -5,7 +5,7 @@ import pickle
 from configparser import ConfigParser
 
 class VectorStore:
-    def __init__(self, vector_dim, M=128, efC=1500, efS=1500, metric='cosine'):
+    def __init__(self, vector_dim, M=16, efC=100, efS=100, metric='cosine'):
         print(vector_dim)
         self.vector_dim = vector_dim
         self.index = hnswlib.Index(space=metric, dim=vector_dim)
@@ -93,6 +93,20 @@ class VectorStore:
                 self.id_counter += 1
             self.index.add_items(vectors, ids)
             print("Vector store updated successfully", end="\n\n")
+        except Exception as e:
+            raise e
+    
+
+    def delete_vector_store(self, persist_path="vector_store"):
+        try:
+            # Check if the directory exists
+            if os.path.exists(persist_path):
+                # Delete index and sentences files
+                os.remove(os.path.join(persist_path, 'index.pkl'))
+                os.remove(os.path.join(persist_path, 'sentences.pkl'))
+                print("Vector store deleted successfully", end="\n\n")
+            else:
+                print("Vector store does not exist", end="\n\n")
         except Exception as e:
             raise e
 
