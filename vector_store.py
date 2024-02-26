@@ -5,10 +5,10 @@ import pickle
 from configparser import ConfigParser
 
 class VectorStore:
-    def __init__(self, vector_dim, M=128, efC=1500, efS=1500):
+    def __init__(self, vector_dim, M=128, efC=1500, efS=1500, metric='cosine'):
         print(vector_dim)
         self.vector_dim = vector_dim
-        self.index = hnswlib.Index(space='cosine', dim=vector_dim)
+        self.index = hnswlib.Index(space=metric, dim=vector_dim)
         self.index.init_index(max_elements=10000, ef_construction=efC, M=M)
         self.index.set_ef(efS)
         self.sentences = {}  # Dictionary to store sentences corresponding to vectors

@@ -9,7 +9,7 @@ This project implements a persistent vector store from scratch using the Hierarc
 - Implementation of a vector store using the HNSW algorithm.
 - Automatic serialization and deserialization functionality is incorporated to ensure efficient storage and retrieval of data on disk.
 - Ability to add new data to the vector store without losing existing data.
-- Querying capability to find similar sentences based on cosine similarity.
+- Querying capability to find similar sentences based on the metric of your choice.
 - Integration with the embedding model to vectorize the text data.
 
 ## Files

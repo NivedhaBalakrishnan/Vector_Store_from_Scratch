@@ -25,8 +25,8 @@ vector_dimension = len(vectors_1[0])
 # Create a dictionary with id and vectors
 new_sentence_vectors_1 = {data_1[i]: vectors_1[i] for i in range(len(data_1))}
 
-# Create a vector store
-vector_store = VectorStore(vector_dimension)
+# Create a vector store. Select metric 'cosine' or 'l1' or 'ip'
+vector_store = VectorStore(vector_dimension, metric='cosine')
 
 # Create the vector store, set persist to True to save the vector store on disk
 vector_store.create_vector_store(new_sentence_vectors_1, persist=True)
